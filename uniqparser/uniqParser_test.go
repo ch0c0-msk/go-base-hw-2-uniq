@@ -1,4 +1,4 @@
-package uniqParser
+package uniqparser
 
 import (
 	"go-base-hw-2-uniq/utils"

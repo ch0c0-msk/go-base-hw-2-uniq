@@ -1,4 +1,4 @@
-package uniqParser
+package uniqparser
 
 import (
 	"go-base-hw-2-uniq/utils"
@@ -40,35 +40,44 @@ func createCompareString(commonString string, opt *utils.Options) string {
 }
 
 func createResultWithFormPattern(changeDataList []ChangeData, opt *utils.Options) []string {
-	result := []string{}
 	if opt.CFlag {
+		result := []string{}
 		for _, val := range changeDataList {
 			if val.count > 0 {
 				countAndString := strings.Join([]string{strconv.Itoa(val.count), val.commonString}, " ")
 				result = append(result, countAndString)
 			}
 		}
-	} else if opt.DFlag {
+		return result
+	}
+	if opt.DFlag {
+		result := []string{}
 		for _, val := range changeDataList {
 			if val.count > 1 {
 				result = append(result, val.commonString)
 			}
 		}
-	} else if opt.UFlag {
+		return result
+	}
+	if opt.UFlag {
+		result := []string{}
 		for _, val := range changeDataList {
 			if val.count == 1 {
 				result = append(result, val.commonString)
 			}
 		}
-	} else {
+		return result
+	}
+	if !opt.CFlag && !opt.DFlag && !opt.UFlag {
+		result := []string{}
 		for _, val := range changeDataList {
 			if val.count > 0 {
 				result = append(result, val.commonString)
 			}
 		}
+		return result
 	}
-
-	return result
+	return []string{}
 }
 
 func Uniq(inputLines []string, options *utils.Options) []string {

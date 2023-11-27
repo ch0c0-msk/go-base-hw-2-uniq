@@ -1,7 +1,7 @@
 package main
 
 import (
-	"go-base-hw-2-uniq/uniqParser"
+	"go-base-hw-2-uniq/uniqparser"
 	"go-base-hw-2-uniq/utils"
 	"log"
 )
@@ -22,7 +22,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	outputLines := uniqParser.Uniq(inputLines, opt)
+	outputLines := uniqparser.Uniq(inputLines, opt)
 
 	outputFile, err := utils.GetOutputFile(args)
 	if err != nil {
