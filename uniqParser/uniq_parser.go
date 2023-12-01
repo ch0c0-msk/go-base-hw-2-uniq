@@ -1,7 +1,7 @@
-package uniqparser
+package uniqParser
 
 import (
-	"go-base-hw-2-uniq/utils"
+	"go-base-hw-2-uniq/cmdUtils"
 	"strconv"
 	"strings"
 )
@@ -12,7 +12,7 @@ type ChangeData struct {
 	count         int
 }
 
-func createCompareString(commonString string, opt *utils.Options) string {
+func createCompareString(commonString string, opt *cmdUtils.Options) string {
 	compareString := commonString
 	if opt.IFlag {
 		compareString = strings.ToLower(compareString)
@@ -39,7 +39,7 @@ func createCompareString(commonString string, opt *utils.Options) string {
 	return compareString
 }
 
-func createResultWithFormPattern(changeDataList []ChangeData, opt *utils.Options) []string {
+func createResultWithFormPattern(changeDataList []ChangeData, opt *cmdUtils.Options) []string {
 	if opt.CFlag {
 		result := []string{}
 		for _, val := range changeDataList {
@@ -80,8 +80,7 @@ func createResultWithFormPattern(changeDataList []ChangeData, opt *utils.Options
 	return []string{}
 }
 
-func Uniq(inputLines []string, options *utils.Options) []string {
-
+func Uniq(inputLines []string, options *cmdUtils.Options) []string {
 	var changeDataList []ChangeData
 	compareLinesMap := map[string]int{}
 
@@ -104,5 +103,4 @@ func Uniq(inputLines []string, options *utils.Options) []string {
 
 	outputStrings := createResultWithFormPattern(changeDataList, options)
 	return outputStrings
-
 }
