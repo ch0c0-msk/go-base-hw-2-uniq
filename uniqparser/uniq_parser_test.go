@@ -1,15 +1,15 @@
-package uniqParser
+package uniqparser
 
 import (
-	"go-base-hw-2-uniq/cmdUtils"
+	"go-base-hw-2-uniq/cmdutils"
 	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func createEmptyOptions() *cmdUtils.Options {
-	opt := new(cmdUtils.Options)
+func createEmptyOptions() *cmdutils.Options {
+	opt := new(cmdutils.Options)
 	return opt
 }
 
