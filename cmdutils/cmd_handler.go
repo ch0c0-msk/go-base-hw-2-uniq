@@ -32,18 +32,16 @@ func GetArgsAndOptions() ([]string, *Options, error) {
 
 	if len(args) > 2 {
 		return []string{}, nil, errors.New("invalid number of arguments")
-	} else {
-		return args, opt, nil
 	}
+		
+	return args, opt, nil
 }
 
 func isOptionsCorrect(opt *Options) bool {
-	result := true
-	if (opt.CFlag && opt.DFlag) || (opt.CFlag && opt.UFlag) || (opt.DFlag && opt.UFlag) {
-		result = false
-	}
-	if (opt.FFlag < 0) || (opt.SFlag < 0) {
-		result = false
-	}
-	return result
+	onlyC := opt.CFlag && !opt.DFlag && !opt.UFlag
+	onlyD := opt.DFlag && !opt.UFlag && !opt.CFlag
+	onlyU := opt.UFlag && !opt.DFlag && !opt.CFlag
+	noCDU := !opt.DFlag && !opt.UFlag && !opt.CFlag
+	positiveFS := (opt.FFlag >= 0) && (opt.SFlag >= 0)
+	return (onlyC || onlyD || onlyU || noCDU) && positiveFS
 }

@@ -10,25 +10,25 @@ import (
 func GetInputFile(args []string) (*os.File, error) {
 	if len(args) < 1 {
 		return os.Stdin, nil
-	} else {
-		inputFile, err := os.OpenFile(flag.Arg(0), os.O_RDWR, 0666)
-		if err != nil {
-			return nil, err
-		}
-		return inputFile, nil
 	}
+	inputFile, err := os.OpenFile(flag.Arg(0), os.O_RDWR, 0666)
+	if err != nil {
+		return nil, err
+	}
+	return inputFile, nil
+
 }
 
 func GetOutputFile(args []string) (*os.File, error) {
 	if len(args) < 2 {
 		return os.Stdout, nil
-	} else {
-		outputFile, err := os.OpenFile(flag.Arg(1), os.O_RDWR, 0666)
-		if err != nil {
-			return nil, err
-		}
-		return outputFile, nil
 	}
+	outputFile, err := os.OpenFile(flag.Arg(1), os.O_RDWR, 0666)
+	if err != nil {
+		return nil, err
+	}
+	return outputFile, nil
+
 }
 
 func ReadLinesFromFile(ioReader io.Reader) ([]string, error) {
@@ -39,9 +39,9 @@ func ReadLinesFromFile(ioReader io.Reader) ([]string, error) {
 		if err != nil {
 			if err == io.EOF {
 				break
-			} else {
-				return []string{}, err
-			}
+			} 
+			return []string{}, err
+			
 		} else {
 			line = line[:len(line)-1]
 			lines = append(lines, line)
@@ -60,9 +60,5 @@ func WriteLinesIntoFile(ioWriter io.Writer, lines []string) error {
 	}
 
 	err := writer.Flush()
-	if err != nil {
-		return err
-	} else {
-		return nil
-	}
+	return err
 }

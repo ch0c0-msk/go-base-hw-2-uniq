@@ -8,54 +8,40 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func createEmptyOptions() *cmdutils.Options {
-	opt := new(cmdutils.Options)
-	return opt
-}
-
-func createInputLinesSlice() []string {
-	lines := []string{}
-	lines = append(lines, "i love", "i love", "we love", "we love", "we ll love", "you love")
-	return lines
-}
+var testLines = []string {"i love", "i love", "we love", "we love", "we ll love", "you love"}
 
 func TestUniqParserWithoutFlags(t *testing.T) {
 	expected := []string{"i love", "we love", "we ll love", "you love"}
-	opt := createEmptyOptions()
-	actual := Uniq(createInputLinesSlice(), opt)
+	opt := &cmdutils.Options{}
+	actual := Uniq(testLines, opt)
 	assert.Equal(t, expected, actual)
 }
 
 func TestUniqParserWithCFlag(t *testing.T) {
 	expected := []string{"2 i love", "2 we love", "1 we ll love", "1 you love"}
-	opt := createEmptyOptions()
-	opt.CFlag = true
-	actual := Uniq(createInputLinesSlice(), opt)
+	opt := &cmdutils.Options{CFlag : true}
+	actual := Uniq(testLines, opt)
 	assert.Equal(t, expected, actual)
 }
 
 func TestUniqParserWithDFlag(t *testing.T) {
 	expected := []string{"i love", "we love"}
-	opt := createEmptyOptions()
-	opt.DFlag = true
-	actual := Uniq(createInputLinesSlice(), opt)
+	opt := &cmdutils.Options{DFlag : true}
+	actual := Uniq(testLines, opt)
 	assert.Equal(t, expected, actual)
 }
 
 func TestUniqParserWithUFlag(t *testing.T) {
 	expected := []string{"we ll love", "you love"}
-	opt := createEmptyOptions()
-	opt.UFlag = true
-	actual := Uniq(createInputLinesSlice(), opt)
+	opt := &cmdutils.Options{UFlag : true}
+	actual := Uniq(testLines, opt)
 	assert.Equal(t, expected, actual)
 }
 
 func TestUniqParserWithIFlag(t *testing.T) {
 	expected := []string{"i love", "we love"}
-	opt := createEmptyOptions()
-	opt.DFlag = true
-	opt.IFlag = true
-	lines := createInputLinesSlice()
+	opt := &cmdutils.Options{DFlag : true, IFlag : true}
+	lines := testLines
 	lines[1] = strings.ToUpper(lines[1])
 	actual := Uniq(lines, opt)
 	assert.Equal(t, expected, actual)
@@ -63,10 +49,7 @@ func TestUniqParserWithIFlag(t *testing.T) {
 
 func TestUniqParserWithFFlagAndSFlag(t *testing.T) {
 	expected := []string{"i llove"}
-	opt := createEmptyOptions()
-	opt.DFlag = true
-	opt.FFlag = 1
-	opt.SFlag = 1
+	opt := &cmdutils.Options{DFlag : true, FFlag : 1, SFlag : 1}
 	lines := []string{"i llove", "we wlove"}
 	actual := Uniq(lines, opt)
 	assert.Equal(t, expected, actual)
