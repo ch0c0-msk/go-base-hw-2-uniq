@@ -1,9 +1,10 @@
 package uniqparser
 
 import (
-	"go-base-hw-2-uniq/cmdutils"
 	"strconv"
 	"strings"
+
+	"go-base-hw-2-uniq/cmdutils"
 )
 
 type ChangeData struct {

@@ -1,10 +1,11 @@
 package main
 
 import (
+	"log"
+
 	"go-base-hw-2-uniq/cmdutils"
 	"go-base-hw-2-uniq/fileutils"
 	"go-base-hw-2-uniq/uniqparser"
-	"log"
 )
 
 func main() {
