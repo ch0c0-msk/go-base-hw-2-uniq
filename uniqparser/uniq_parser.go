@@ -81,7 +81,6 @@ func createResultWithFormPattern(changeDataList []ChangeData, opt *cmdutils.Opti
 }
 
 func Uniq(inputLines []string, options *cmdutils.Options) []string {
-
 	var changeDataList []ChangeData
 	compareLinesMap := map[string]int{}
 

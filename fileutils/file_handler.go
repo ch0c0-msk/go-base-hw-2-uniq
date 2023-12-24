@@ -16,7 +16,6 @@ func GetInputFile(args []string) (*os.File, error) {
 		return nil, err
 	}
 	return inputFile, nil
-
 }
 
 func GetOutputFile(args []string) (*os.File, error) {
@@ -28,7 +27,6 @@ func GetOutputFile(args []string) (*os.File, error) {
 		return nil, err
 	}
 	return outputFile, nil
-
 }
 
 func ReadLinesFromFile(ioReader io.Reader) ([]string, error) {
@@ -39,9 +37,9 @@ func ReadLinesFromFile(ioReader io.Reader) ([]string, error) {
 		if err != nil {
 			if err == io.EOF {
 				break
-			} 
+			}
 			return []string{}, err
-			
+
 		} else {
 			line = line[:len(line)-1]
 			lines = append(lines, line)
